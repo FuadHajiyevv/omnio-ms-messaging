@@ -1,0 +1,25 @@
+server:
+  port: ${SERVER_PORT}
+  servlet:
+    context-path: /omnio
+spring:
+  datasource:
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    url: jdbc:postgresql://${HOST}:${PORT}/${DATABASE_NAME}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+
+jwt:
+  token:
+    secret: K02tUsz+cHDQ5iu39RyVcq9J7eRrLCcGxrNFZeURihQ=
+    issuer: ms-auth
