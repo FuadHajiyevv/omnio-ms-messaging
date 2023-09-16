@@ -1,6 +1,7 @@
 package az.atl.msmessaging.dao.repository;
 
 import az.atl.msmessaging.dao.entity.MessageEntity;
+import az.atl.msmessaging.dto.response.SupervisorMessageResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,5 +28,11 @@ public interface MessageRepository extends JpaRepository<MessageEntity,Long> {
             "   OR (u.username = :friendUsername AND u2.username = :username) " +
             "ORDER BY m.timestamp", nativeQuery = true)
     List<Object[]> getMessages(@Param("username") String username, @Param("friendUsername") String friendUsername);
+
+
+    @Query(value = "select new az.atl.msmessaging.dto.response.SupervisorMessageResponse(m.timestamp,m.senderId.username,m.receiverId.username,m.content)" +
+            "from MessageEntity m where (m.senderId.username = :u1 and m.receiverId.username = :u2) or (m.senderId.username = :u2 and m.receiverId.username = :u1)" +
+            "order by m.timestamp")
+    List<SupervisorMessageResponse> getUsersMessagesById(@Param("u1")String u1,@Param("u2")String u2);
 }
 

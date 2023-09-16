@@ -98,19 +98,24 @@ public class MessageServiceImpl implements MessageService {
 
         List<Object[]> messages = messageRepository.getMessages(user.getName(),username);
 
-        return messages != null ?
+        return getMessageResponses(messages);
+    }
+
+    public List<MessageResponse> getMessageResponses(List<Object[]> messages) {
+        return messages != null && !messages.isEmpty() ?
                 messages.stream().map(data -> {
-                            Date timestamp = (Date) data[0];
-                            String name = (String) data[1];
-                            String content = (String) data[2];
-                            String formattedMessage = "[" + timestamp.toString() + "] " + name + ": " + content;
-                            return MessageResponse.builder()
-                                    .message(formattedMessage)
-                                    .build();
-                        }).toList()
+                    Date timestamp = (Date) data[0];
+                    String name = (String) data[1];
+                    String content = (String) data[2];
+                    String formattedMessage = "[" + timestamp.toString() + "] " + name + ": " + content;
+                    return MessageResponse.builder()
+                            .message(formattedMessage)
+                            .build();
+                }).toList()
                 :
                 Collections.emptyList();
     }
+
     @Transactional
     @Override
     public List<ChatListResponse> getChatList() {

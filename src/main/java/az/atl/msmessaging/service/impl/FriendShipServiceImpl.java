@@ -165,7 +165,11 @@ public class FriendShipServiceImpl implements FriendShipService {
 
         if (Objects.isNull(friendList)) return Collections.emptyList();
 
-        List<FriendListResponse> list = friendList.stream().map(o ->
+        return getFriendListResponses(friendList);
+    }
+
+    public  List<FriendListResponse> getFriendListResponses(List<Object[]> friendList) {
+        return friendList.stream().map(o ->
                 {
                     String username = (String) o[0];
                     String status = (String) o[1];
@@ -181,8 +185,6 @@ public class FriendShipServiceImpl implements FriendShipService {
                             .build();
                 }
         ).toList();
-
-        return list;
     }
 
     @Transactional

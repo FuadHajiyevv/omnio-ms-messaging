@@ -25,14 +25,12 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserRepository repository;
 
-    private final ActivityReportServiceImpl activityReportService;
     private final ActivityReportRepository activityReportRepository;
 
     private final UserStatusRepository userStatusRepository;
 
-    public AuthServiceImpl(UserRepository repository, ActivityReportServiceImpl activityReportService, ActivityReportRepository activityReportRepository, UserStatusRepository userStatusRepository) {
+    public AuthServiceImpl(UserRepository repository, ActivityReportRepository activityReportRepository, UserStatusRepository userStatusRepository) {
         this.repository = repository;
-        this.activityReportService = activityReportService;
         this.activityReportRepository = activityReportRepository;
         this.userStatusRepository = userStatusRepository;
     }
