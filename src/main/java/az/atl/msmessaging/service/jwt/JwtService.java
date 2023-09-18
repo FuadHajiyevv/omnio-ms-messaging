@@ -35,7 +35,6 @@ public class JwtService {
     }
 
 
-
     public <T> T extractClaim(String jwt, Function<Claims, T> claimsTFunction) {
         Claims getAll = getAllClaimsFromJwt(jwt);
         return claimsTFunction.apply(getAll);
@@ -80,11 +79,11 @@ public class JwtService {
                 return true;
             }
         }
-        throw new AccessDeniedException(messageSource.getMessage("access_denied",null, LocaleContextHolder.getLocale()));
+        throw new AccessDeniedException(messageSource.getMessage("access_denied", null, LocaleContextHolder.getLocale()));
     }
 
-    public boolean checkIssuer(String jwt){
-        return extractClaim(jwt,Claims::getIssuer).equals(issuer);
+    public boolean checkIssuer(String jwt) {
+        return extractClaim(jwt, Claims::getIssuer).equals(issuer);
     }
 
     public boolean isValid(String jwt, UserDetails userDetails) {

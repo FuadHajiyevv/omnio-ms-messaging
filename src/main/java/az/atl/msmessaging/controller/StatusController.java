@@ -22,7 +22,7 @@ public class StatusController {
     @PostMapping("/switch")
     ResponseEntity<SwitchResponse> switchStatus(
             @RequestBody SwitchStatusRequest request
-    ){
+    ) {
         return ResponseEntity.ok(service.switchStatus(request));
     }
 

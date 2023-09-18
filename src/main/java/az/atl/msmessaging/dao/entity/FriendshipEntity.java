@@ -15,7 +15,7 @@ import java.util.Objects;
 @Entity
 @Table(
         name = "friendships",
-        indexes = @Index(name = "user_friend_id_unique",columnList = "user_id,friend_id",unique = true)
+        indexes = @Index(name = "user_friend_id_unique", columnList = "user_id,friend_id", unique = true)
 
 )
 public class FriendshipEntity {
@@ -25,12 +25,12 @@ public class FriendshipEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL,targetEntity = UserEntity.class)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = UserEntity.class)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity userId;
 
-    @ManyToOne(cascade = CascadeType.ALL,targetEntity = UserEntity.class)
-    @JoinColumn(name = "friend_id",referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = UserEntity.class)
+    @JoinColumn(name = "friend_id", referencedColumnName = "id")
     private UserEntity friendId;
 
     @Column(name = "status")

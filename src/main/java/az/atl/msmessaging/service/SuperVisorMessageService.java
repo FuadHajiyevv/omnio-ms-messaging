@@ -1,7 +1,9 @@
 package az.atl.msmessaging.service;
 
-import az.atl.msmessaging.dto.response.*;
-import org.aspectj.bridge.Message;
+import az.atl.msmessaging.dto.response.ActivityReportResponse;
+import az.atl.msmessaging.dto.response.ChatListResponse;
+import az.atl.msmessaging.dto.response.FriendListResponse;
+import az.atl.msmessaging.dto.response.MessageResponse;
 
 import java.util.List;
 

@@ -1,30 +1,27 @@
 package az.atl.msmessaging.controller;
 
 import az.atl.msmessaging.dto.response.DeleteResponse;
-import az.atl.msmessaging.dto.response.UpdateResponse;
-import az.atl.msmessaging.service.impl.AgentProfileServiceImpl;
+import az.atl.msmessaging.service.impl.SuperVisorProfileServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/agent/profile")
+@RequestMapping("/supervisor/profile")
 public class SuperVisorProfileController {
 
-    private final AgentProfileServiceImpl agentProfileService;
+    private final SuperVisorProfileServiceImpl service;
 
-    public SuperVisorProfileController(AgentProfileServiceImpl agentProfileService) {
-        this.agentProfileService = agentProfileService;
+    public SuperVisorProfileController(SuperVisorProfileServiceImpl service) {
+        this.service = service;
     }
 
-    @PutMapping("/updateUsername/{username}")
-    public ResponseEntity<UpdateResponse> updateUsername(
-            @PathVariable(name = "username") String username
+    @DeleteMapping("{username}")
+    public ResponseEntity<DeleteResponse> deleteUser(
+            @PathVariable(name = "username")String username
     ){
-        return ResponseEntity.ok(agentProfileService.updateUsername(username));
-    }
-
-    @DeleteMapping("/delete")
-    public ResponseEntity<DeleteResponse> deleteUser(){
-        return ResponseEntity.ok(agentProfileService.deleteUser());
+        return ResponseEntity.ok(service.deleteByUsername(username));
     }
 }

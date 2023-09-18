@@ -3,9 +3,7 @@ package az.atl.msmessaging.dao.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.Duration;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -22,8 +20,8 @@ public class ActivityReportEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reportId;
 
-    @OneToOne(cascade = CascadeType.ALL,targetEntity = UserEntity.class)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = UserEntity.class)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity userId;
 
     @Column(name = "total_messages")

@@ -19,9 +19,9 @@ public class UserService {
         this.messageSource = messageSource;
     }
 
-    public UserEntity findByUsername(String username){
+    public UserEntity findByUsername(String username) {
         return repository.findByUsername(username).orElseThrow(
-                ()->new UserNotFoundException(messageSource.getMessage("username_not_found",null, LocaleContextHolder.getLocale()))
+                () -> new UserNotFoundException(messageSource.getMessage("username_not_found", null, LocaleContextHolder.getLocale()))
         );
     }
 }

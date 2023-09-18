@@ -10,14 +10,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MessageRepository extends JpaRepository<MessageEntity,Long> {
+public interface MessageRepository extends JpaRepository<MessageEntity, Long> {
 
     @Query(value = "SELECT DISTINCT u.username " +
             "FROM users u " +
             "INNER JOIN messages m ON u.id = m.sender_id OR u.id = m.receiver_id " +
             "WHERE u.username != :username", nativeQuery = true)
     List<String> getChats(@Param("username") String username);
-
 
 
     @Query(value = "SELECT m.timestamp, u.username, m.content " +
@@ -28,11 +27,5 @@ public interface MessageRepository extends JpaRepository<MessageEntity,Long> {
             "   OR (u.username = :friendUsername AND u2.username = :username) " +
             "ORDER BY m.timestamp", nativeQuery = true)
     List<Object[]> getMessages(@Param("username") String username, @Param("friendUsername") String friendUsername);
-
-
-    @Query(value = "select new az.atl.msmessaging.dto.response.SupervisorMessageResponse(m.timestamp,m.senderId.username,m.receiverId.username,m.content)" +
-            "from MessageEntity m where (m.senderId.username = :u1 and m.receiverId.username = :u2) or (m.senderId.username = :u2 and m.receiverId.username = :u1)" +
-            "order by m.timestamp")
-    List<SupervisorMessageResponse> getUsersMessagesById(@Param("u1")String u1,@Param("u2")String u2);
 }
 

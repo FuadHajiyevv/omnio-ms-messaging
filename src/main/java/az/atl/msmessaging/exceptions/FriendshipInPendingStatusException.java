@@ -1,6 +1,6 @@
 package az.atl.msmessaging.exceptions;
 
-public class FriendshipInPendingStatusException extends RuntimeException{
+public class FriendshipInPendingStatusException extends RuntimeException {
 
     public FriendshipInPendingStatusException() {
     }

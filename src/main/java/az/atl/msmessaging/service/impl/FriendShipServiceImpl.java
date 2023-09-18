@@ -168,7 +168,7 @@ public class FriendShipServiceImpl implements FriendShipService {
         return getFriendListResponses(friendList);
     }
 
-    public  List<FriendListResponse> getFriendListResponses(List<Object[]> friendList) {
+    public List<FriendListResponse> getFriendListResponses(List<Object[]> friendList) {
         return friendList.stream().map(o ->
                 {
                     String username = (String) o[0];
@@ -208,7 +208,8 @@ public class FriendShipServiceImpl implements FriendShipService {
         String status1 = friendShipRepository.getFriendshipStatus(username, user.getName());
         String status2 = friendShipRepository.getFriendshipStatus(user.getName(), username);
 
-        if(Objects.isNull(status1) && Objects.isNull(status2)) throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists",null,LocaleContextHolder.getLocale()));
+        if (Objects.isNull(status1) && Objects.isNull(status2))
+            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists", null, LocaleContextHolder.getLocale()));
         if (Objects.nonNull(status1)) {
             if (!status1.equals(ACCEPTED.name())) {
                 throw new BlockingProhibitedException(messageSource.getMessage("blocking_prohibited", null, LocaleContextHolder.getLocale()));
@@ -243,8 +244,8 @@ public class FriendShipServiceImpl implements FriendShipService {
                 return FriendShipResponse.builder()
                         .status(ACCEPTED)
                         .build();
-            }
-            else throw new UnBlockingProhibitedException(messageSource.getMessage("unblock_prohibited",null,LocaleContextHolder.getLocale()));
+            } else
+                throw new UnBlockingProhibitedException(messageSource.getMessage("unblock_prohibited", null, LocaleContextHolder.getLocale()));
         }
         throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists", null, LocaleContextHolder.getLocale()));
     }

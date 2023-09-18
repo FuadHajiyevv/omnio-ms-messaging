@@ -14,8 +14,6 @@ import az.atl.msmessaging.service.AuthService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.text.NumberFormat;
-import java.time.Duration;
 import java.util.Date;
 
 import static az.atl.msmessaging.enums.Status.OFFLINE;
@@ -76,16 +74,16 @@ public class AuthServiceImpl implements AuthService {
 
         UserStatusEntity status = userStatusRepository.getStatusByUsername(request.getUsername());
 
-        if(request.getStatus().equals(status.getStatus().name())){
+        if (request.getStatus().equals(status.getStatus().name())) {
             return SwitchResponse.builder()
                     .switched(false)
                     .build();
         }
 
-        if(status.getStatus().name().equals(OFFLINE.name())) {
+        if (status.getStatus().name().equals(OFFLINE.name())) {
             userStatusRepository.updateUserStatusToOnlineByUsername(request.getUsername());
             activityReportRepository.updateLastOffline(status.getUserId().getId());
-        }else{
+        } else {
             userStatusRepository.updateUserStatusToOfflineByUsername(request.getUsername());
             activityReportRepository.updateLastOnline(status.getUserId().getId());
             activityReportRepository.updateResponseTimeForUser(status.getUserId().getId());

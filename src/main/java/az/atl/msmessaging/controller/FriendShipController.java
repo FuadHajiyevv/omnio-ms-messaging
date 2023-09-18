@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/friendship")
-public class FriendShipController{
+public class FriendShipController {
 
     private final FriendShipServiceImpl service;
 
@@ -24,45 +24,45 @@ public class FriendShipController{
     @PostMapping("/send")
     public ResponseEntity<FriendShipResponse> sendFriendShip(
             @RequestBody FriendShipRequest request
-    ){
+    ) {
         return ResponseEntity.ok(service.sendFriendshipRequest(request));
     }
 
     @PostMapping("/accept")
     public ResponseEntity<FriendShipResponse> acceptFriendship(
             @RequestBody AcceptFriendShipRequest request
-    ){
+    ) {
         return ResponseEntity.ok(service.acceptFriendshipRequest(request));
     }
 
     @DeleteMapping("/reject/{username}")
     public ResponseEntity<FriendShipResponse> rejectFriendRequest(
             @PathVariable(name = "username") String username
-    ){
+    ) {
         return ResponseEntity.ok(service.rejectFriendshipRequest(username));
     }
 
     @GetMapping("/friendList")
-    public ResponseEntity<List<FriendListResponse>> friendList(){
+    public ResponseEntity<List<FriendListResponse>> friendList() {
         return ResponseEntity.ok(service.listFriends());
     }
 
     @GetMapping("/pending")
-    public ResponseEntity<List<AcceptFriendShipResponse>> getPendingUsers(){
+    public ResponseEntity<List<AcceptFriendShipResponse>> getPendingUsers() {
         return ResponseEntity.ok(service.friendshipRequests());
     }
 
     @DeleteMapping("/block/{username}")
     public ResponseEntity<FriendShipResponse> blockUser(
-            @PathVariable(name = "username")String username
-    ){
+            @PathVariable(name = "username") String username
+    ) {
         return ResponseEntity.ok(service.blockUser(username));
     }
 
     @PostMapping("/unblock/{username}")
     public ResponseEntity<FriendShipResponse> unblockUser(
             @PathVariable(name = "username") String username
-    ){
+    ) {
         return ResponseEntity.ok(service.unblockUser(username));
     }
 

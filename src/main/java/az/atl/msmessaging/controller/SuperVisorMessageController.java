@@ -48,7 +48,7 @@ public class SuperVisorMessageController {
     @GetMapping("/getActivityReport/{username}")
     public ResponseEntity<ActivityReportResponse> getActivityReport(
             @PathVariable(name = "username") String username
-    ){
+    ) {
         return ResponseEntity.ok(visorMessageService.getActivityReport(username));
     }
 }

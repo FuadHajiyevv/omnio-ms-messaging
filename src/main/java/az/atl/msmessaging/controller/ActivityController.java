@@ -18,7 +18,7 @@ public class ActivityController {
     }
 
     @GetMapping("/report")
-    public ResponseEntity<ActivityReportResponse> getReport(){
+    public ResponseEntity<ActivityReportResponse> getReport() {
         return ResponseEntity.ok(activityReportService.getActivityReport());
     }
 }

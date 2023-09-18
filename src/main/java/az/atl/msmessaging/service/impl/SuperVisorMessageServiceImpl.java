@@ -5,7 +5,10 @@ import az.atl.msmessaging.dao.entity.UserEntity;
 import az.atl.msmessaging.dao.repository.ActivityReportRepository;
 import az.atl.msmessaging.dao.repository.FriendShipRepository;
 import az.atl.msmessaging.dao.repository.MessageRepository;
-import az.atl.msmessaging.dto.response.*;
+import az.atl.msmessaging.dto.response.ActivityReportResponse;
+import az.atl.msmessaging.dto.response.ChatListResponse;
+import az.atl.msmessaging.dto.response.FriendListResponse;
+import az.atl.msmessaging.dto.response.MessageResponse;
 import az.atl.msmessaging.exceptions.NoFriendshipExistsException;
 import az.atl.msmessaging.service.SuperVisorMessageService;
 import org.springframework.context.MessageSource;
@@ -13,7 +16,6 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 

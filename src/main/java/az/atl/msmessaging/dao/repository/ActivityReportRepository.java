@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ActivityReportRepository extends JpaRepository<ActivityReportEntity,Long> {
+public interface ActivityReportRepository extends JpaRepository<ActivityReportEntity, Long> {
 
     @Query(value = "SELECT COUNT(*) AS online_friend_count " +
             "FROM friendships AS f " +
@@ -46,6 +46,7 @@ public interface ActivityReportRepository extends JpaRepository<ActivityReportEn
     long totalChats(@Param(value = "userId") Long id);
 
     ActivityReportEntity findAllByUserId(UserEntity user);
+
     @Transactional
     @Modifying
     @Query(value = "UPDATE activity_reports " +
@@ -70,9 +71,6 @@ public interface ActivityReportRepository extends JpaRepository<ActivityReportEn
     @Query(value = "SELECT AVG(ar.response_time/60) AS average_response_time " +
             "FROM activity_reports ar", nativeQuery = true)
     Double calculateAverageResponseTime();
-
-
-
 
 
 }

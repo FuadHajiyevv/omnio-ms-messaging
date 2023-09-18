@@ -22,7 +22,7 @@ public class UserRegisterController {
     @PostMapping("/save")
     public ResponseEntity<AuthResponse> saveUser(
             @RequestBody UserAuthRequest request
-            ){
+    ) {
         return ResponseEntity.ok(authService.saveNewRegisterUser(request));
     }
 

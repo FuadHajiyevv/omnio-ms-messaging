@@ -51,18 +51,18 @@ public class MessageServiceImpl implements MessageService {
 
         Authentication user = SecurityContextHolder.getContext().getAuthentication();
 
-        String status = friendShipRepository.friendShipStatus(user.getName(),request.getFriend());
+        String status = friendShipRepository.friendShipStatus(user.getName(), request.getFriend());
 
-        if(Objects.isNull(status)){
-            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists",null,LocaleContextHolder.getLocale()));
+        if (Objects.isNull(status)) {
+            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists", null, LocaleContextHolder.getLocale()));
         }
 
-        if(status.equals(BLOCKED.name())){
-            throw  new MessageBlockedException(messageSource.getMessage("message_blocked",null,LocaleContextHolder.getLocale()));
+        if (status.equals(BLOCKED.name())) {
+            throw new MessageBlockedException(messageSource.getMessage("message_blocked", null, LocaleContextHolder.getLocale()));
         }
 
-        if(!status.equals(ACCEPTED.name())){
-            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists",null, LocaleContextHolder.getLocale()));
+        if (!status.equals(ACCEPTED.name())) {
+            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists", null, LocaleContextHolder.getLocale()));
         }
 
         UserEntity sender = userService.findByUsername(user.getName());
@@ -80,23 +80,24 @@ public class MessageServiceImpl implements MessageService {
                 .isDelivered(true)
                 .build();
     }
+
     @Transactional
     @Override
     public List<MessageResponse> getMessages(String username) {
 
         Authentication user = SecurityContextHolder.getContext().getAuthentication();
 
-        String status = friendShipRepository.friendShipStatus(user.getName(),username);
+        String status = friendShipRepository.friendShipStatus(user.getName(), username);
 
         if (Objects.isNull(status)) {
-            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists",null, LocaleContextHolder.getLocale()));
+            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists", null, LocaleContextHolder.getLocale()));
         }
 
-        if(!status.equals(ACCEPTED.name())){
-            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists",null, LocaleContextHolder.getLocale()));
+        if (!status.equals(ACCEPTED.name())) {
+            throw new NoFriendshipExistsException(messageSource.getMessage("friendship_doesnt_exists", null, LocaleContextHolder.getLocale()));
         }
 
-        List<Object[]> messages = messageRepository.getMessages(user.getName(),username);
+        List<Object[]> messages = messageRepository.getMessages(user.getName(), username);
 
         return getMessageResponses(messages);
     }

@@ -23,10 +23,10 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username",unique = true)
+    @Column(name = "username", unique = true)
     private String username;
 
-    @Column(name = "phone_number",unique = true)
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
 
     @Column(name = "created_at")
@@ -49,7 +49,6 @@ public class UserEntity implements UserDetails {
 
     @OneToOne(mappedBy = "userId", cascade = CascadeType.ALL)
     private ActivityReportEntity activityReport;
-
 
 
     @Override

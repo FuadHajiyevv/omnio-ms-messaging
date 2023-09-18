@@ -66,7 +66,7 @@ public class ActivityReportServiceImpl implements ActivityReportService {
         long totalFriends = activityReportRepository.totalFriends(id);
 
 
-        ActivityReportEntity report = entityManager.find(ActivityReportEntity.class,user.getId());
+        ActivityReportEntity report = entityManager.find(ActivityReportEntity.class, user.getId());
 
         report.setActiveFriends(activeFriends);
         report.setTotalFriends(totalFriends);

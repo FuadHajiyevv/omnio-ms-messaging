@@ -20,11 +20,11 @@ public class MessageEntity {
     @Column(name = "message_id")
     private Long messageId;
 
-    @ManyToOne(cascade = CascadeType.ALL,targetEntity = UserEntity.class)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = UserEntity.class)
     @JoinColumn(name = "sender_id")
     private UserEntity senderId;
 
-    @ManyToOne(cascade = CascadeType.ALL,targetEntity = UserEntity.class)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = UserEntity.class)
     @JoinColumn(name = "receiver_id")
     private UserEntity receiverId;
 

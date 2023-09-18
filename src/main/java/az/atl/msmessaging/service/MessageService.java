@@ -12,6 +12,7 @@ import java.util.List;
 public interface MessageService {
 
     DeliverResponse sendMessage(MessageRequest request);
+
     List<MessageResponse> getMessages(String chat);
 
     List<ChatListResponse> getChatList();

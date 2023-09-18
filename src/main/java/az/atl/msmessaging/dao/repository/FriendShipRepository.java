@@ -39,22 +39,6 @@ public interface FriendShipRepository extends JpaRepository<FriendshipEntity, Lo
     String getFriendshipStatus(@Param("username") String username, @Param("friendUsername") String friendUsername);
 
 
-    @Modifying
-    @Transactional
-    @Query(value = "DELETE FROM friendships " +
-            "WHERE user_id IN (SELECT id FROM users WHERE username = :friendUsername) " +
-            "AND friend_id IN (SELECT id FROM users WHERE username = :username)", nativeQuery = true)
-    void deleteFriendship(@Param("username") String username, @Param("friendUsername") String friend);
-
-
-//    @Query(value = "SELECT u.username " +
-//            "FROM users u " +
-//            "JOIN friendships f ON u.id = f.friend_id " +
-//            "WHERE f.user_id = (SELECT id FROM users WHERE username = :username) " +
-//            "AND f.status = 'ACCEPTED'",nativeQuery = true)
-//    List<String> getListOfFriends(@Param(value = "username") String username);
-
-
     @Query(value = "SELECT u.username, us.status, us.last_active_at " +
             "FROM users u " +
             "JOIN friendships f ON u.id = f.friend_id " +

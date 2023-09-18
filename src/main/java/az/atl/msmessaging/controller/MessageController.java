@@ -24,19 +24,19 @@ public class MessageController {
     @PostMapping("/send")
     public ResponseEntity<DeliverResponse> sendMessage(
             @RequestBody MessageRequest message
-            ) {
+    ) {
         return ResponseEntity.ok(service.sendMessage(message));
     }
 
     @GetMapping("/getMessages/{username}")
     public ResponseEntity<List<MessageResponse>> getMessages(
-            @PathVariable(name = "username")String username
-    ){
+            @PathVariable(name = "username") String username
+    ) {
         return ResponseEntity.ok(service.getMessages(username));
     }
 
     @GetMapping("/getChats")
-    public ResponseEntity<List<ChatListResponse>> getChats(){
+    public ResponseEntity<List<ChatListResponse>> getChats() {
         return ResponseEntity.ok(service.getChatList());
     }
 }

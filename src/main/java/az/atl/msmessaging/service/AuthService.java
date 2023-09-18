@@ -7,8 +7,8 @@ import az.atl.msmessaging.dto.response.SwitchResponse;
 
 public interface AuthService {
 
-     AuthResponse saveNewRegisterUser(UserAuthRequest user);
+    AuthResponse saveNewRegisterUser(UserAuthRequest user);
 
-     SwitchResponse switchStatus(SwitchStatusRequest request);
+    SwitchResponse switchStatus(SwitchStatusRequest request);
 }
 

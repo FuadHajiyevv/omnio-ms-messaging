@@ -11,10 +11,15 @@ import java.util.List;
 public interface FriendShipService {
 
     FriendShipResponse sendFriendshipRequest(FriendShipRequest request);
+
     FriendShipResponse acceptFriendshipRequest(AcceptFriendShipRequest request);
+
     FriendShipResponse rejectFriendshipRequest(String username);
+
     List<FriendListResponse> listFriends();
+
     List<AcceptFriendShipResponse> friendshipRequests();
+
     FriendShipResponse blockUser(String username);
 
     FriendShipResponse unblockUser(String username);

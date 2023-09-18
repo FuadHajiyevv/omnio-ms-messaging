@@ -5,7 +5,6 @@ import az.atl.msmessaging.dao.repository.UserRepository;
 import az.atl.msmessaging.dto.response.DeleteResponse;
 import az.atl.msmessaging.dto.response.UpdateResponse;
 import az.atl.msmessaging.service.AgentProfileService;
-import org.hibernate.sql.Delete;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -45,9 +44,9 @@ public class AgentProfileServiceImpl implements AgentProfileService {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        UserEntity user = (UserEntity)authentication.getPrincipal();
+        UserEntity user = (UserEntity) authentication.getPrincipal();
 
-        System.out.println(user.getId());
+        System.out.println(user);
 
         userRepository.deleteById(user.getId());
 
