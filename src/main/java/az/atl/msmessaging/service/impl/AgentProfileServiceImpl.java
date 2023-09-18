@@ -45,11 +45,14 @@ public class AgentProfileServiceImpl implements AgentProfileService {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        UserEntity user = userService.findByUsername(authentication.getName());
+        UserEntity user = (UserEntity)authentication.getPrincipal();
 
-        userRepository.deleteUserAndRelatedEntities(user.getId());
+        System.out.println(user.getId());
+
+        userRepository.deleteById(user.getId());
 
         return DeleteResponse.builder()
+                .isDeleted(true)
                 .build();
     }
 }

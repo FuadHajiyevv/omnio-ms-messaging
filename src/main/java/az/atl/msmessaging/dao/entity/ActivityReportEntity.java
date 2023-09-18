@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -48,6 +49,7 @@ public class ActivityReportEntity {
 
     @Column(name = "last_offline_timestamp")
     private Date lastOffline;
+
 
     @Override
     public boolean equals(Object o) {

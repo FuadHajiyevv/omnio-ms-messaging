@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -30,6 +31,25 @@ public class UserEntity implements UserDetails {
 
     @Column(name = "created_at")
     private Date createdAt;
+
+    @OneToOne(mappedBy = "userId", cascade = CascadeType.ALL)
+    private UserStatusEntity userStatus;
+
+    @OneToMany(mappedBy = "senderId", cascade = CascadeType.ALL)
+    private List<MessageEntity> sentMessages;
+
+    @OneToMany(mappedBy = "receiverId", cascade = CascadeType.ALL)
+    private List<MessageEntity> receivedMessages;
+
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    private List<FriendshipEntity> user;
+
+    @OneToMany(mappedBy = "friendId", cascade = CascadeType.ALL)
+    private List<FriendshipEntity> friend;
+
+    @OneToOne(mappedBy = "userId", cascade = CascadeType.ALL)
+    private ActivityReportEntity activityReport;
+
 
 
     @Override
