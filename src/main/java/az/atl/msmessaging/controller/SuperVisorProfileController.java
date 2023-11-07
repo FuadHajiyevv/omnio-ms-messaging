@@ -22,6 +22,7 @@ public class SuperVisorProfileController {
     public ResponseEntity<DeleteResponse> deleteUser(
             @PathVariable(name = "username")String username
     ){
+        System.out.println("Controller");
         return ResponseEntity.ok(service.deleteByUsername(username));
     }
 }

@@ -20,7 +20,7 @@ public class SuperVisorProfileServiceImpl implements SuperVisorService {
 
     @Override
     public DeleteResponse deleteByUsername(String username) {
-
+        System.out.println("service");
         UserEntity user = userService.findByUsername(username);
 
         repository.deleteById(user.getId());
