@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  omnio-ms-messaging:
+    build: .
+    container_name: ms-messaging
+    ports:
+      - "8080:8080"
+    networks:
+      - ${NETWORK}
+    depends_on:
+      - ms-messaging-db
+
+  ms-messaging-db:
+    image: postgres:${TAG}
+    container_name: omnio-messaging-db
+    ports:
+      - "5434:5432"
+    networks:
+      - ${NETWORK}
+    volumes:
+      - type: volume
+        source: messaging-db-volume
+        target: /opt/app/data
+        read_only: false
+    environment:
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+
+networks:
+  omnio:
+    external: true
+    driver: bridge
+
+volumes:
+  messaging-db-volume:
+    external: true

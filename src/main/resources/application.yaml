@@ -1,12 +1,12 @@
 server:
-  port: ${SERVER_PORT}
+  port: 8080
   servlet:
     context-path: /omnio
 spring:
   datasource:
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
-    url: jdbc:postgresql://${HOST}:${PORT}/${DATABASE_NAME}
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://omnio-messaging-db/omnio-messaging-db
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
